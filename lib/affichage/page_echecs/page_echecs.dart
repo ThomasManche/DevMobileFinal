@@ -218,11 +218,11 @@ class _PageEchecsState extends State<PageEchecs> {
     );
   }
 
-  void chargerPartie() async{
+  void chargerPartie() async {
     await plateau.chargerPartie(database);
-    setState(() {
-    });
+    setState(() {});
   }
+
   // ______________________________________________________________________________________________________________________________________________________
   // Pop up, dans le widget car interractive - GESTION DE LA COULEUR DU THEME
   // ______________________________________________________________________________________________________________________________________________________
@@ -375,8 +375,8 @@ class _PageEchecsState extends State<PageEchecs> {
               title: const Text('Abandon du joueur actuel'),
               onTap: () {
                 setState(() {
-                  if (plateau.ConditionJeu){
-                  popUp1Abandon(context);
+                  if (plateau.ConditionJeu) {
+                    popUp1Abandon(context);
                   }
                 });
               },
@@ -392,8 +392,8 @@ class _PageEchecsState extends State<PageEchecs> {
               title: const Text('Sauvegarder'),
               onTap: () {
                 setState(() {
-                  if (plateau.ConditionJeu){
-                  plateau.sauvergarderPartie(database);
+                  if (plateau.ConditionJeu) {
+                    plateau.sauvergarderPartie(database);
                   }
                 });
               },

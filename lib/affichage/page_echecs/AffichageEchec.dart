@@ -580,8 +580,8 @@ class _AffichageEchecState extends State<AffichageEchec> {
                         setState(() {
                           plateau.piecesMortes
                               .remove(plateau.piecesMortes.elementAt(cavalier));
-                          plateau.plateau[newY][newX] = selectedPiece
-                              .promotionPiece("Cavalier", plateau);
+                          plateau.plateau[newY][newX] =
+                              selectedPiece.promotionPiece("Cavalier", plateau);
                         });
                       },
                       child: Column(
@@ -658,16 +658,18 @@ class _AffichageEchecState extends State<AffichageEchec> {
   }
 
   void endTimer(String color) {
-    if (color == "blanc") {
-      plateau.timerB.stop();
-      plateau.tourActuel = "Blanc";
-      afficherPopupTimer();
-      plateau.ConditionJeu = false;
-    } else {
-      plateau.timerN.stop();
-      plateau.tourActuel = "Noir";
-      afficherPopupTimer();
-      plateau.ConditionJeu = false;
+    if (plateau.ConditionJeu) {
+      if (color == "blanc") {
+        plateau.timerB.stop();
+        plateau.tourActuel = "Blanc";
+        afficherPopupTimer();
+        plateau.ConditionJeu = false;
+      } else {
+        plateau.timerN.stop();
+        plateau.tourActuel = "Noir";
+        afficherPopupTimer();
+        plateau.ConditionJeu = false;
+      }
     }
   }
 }

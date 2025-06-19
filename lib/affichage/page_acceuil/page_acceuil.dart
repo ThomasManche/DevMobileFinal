@@ -17,6 +17,7 @@ class PageAcceuil extends StatelessWidget {
         preferredSize: Size.fromHeight(
             screenHeight * 0.1), // Taille personnalisée de l'AppBar
         child: AppBar(
+          automaticallyImplyLeading: false, // Désactiver le bouton de retour
           backgroundColor: Colors
               .transparent, // Rendre le fond transparent pour appliquer un dégradé
           // Titre

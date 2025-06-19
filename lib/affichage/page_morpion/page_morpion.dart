@@ -228,8 +228,10 @@ class _PageMorpionState extends State<PageMorpion> {
       }
 
       // Vérifier la partie nulle
-      if (tour == 9) {
-        lancePopUp(context, "Partie nulle");
+      else {
+        if (tour == 9) {
+          lancePopUp(context, "Partie nulle");
+        }
       }
     });
   }

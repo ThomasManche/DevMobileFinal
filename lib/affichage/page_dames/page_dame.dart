@@ -188,7 +188,7 @@ class _PageDamesState extends State<PageDames> {
               .transparent, // Rendre le fond transparent pour appliquer un dégradé
           // Titre
           title: Text(
-            'Dames',
+            'Damn',
             style: TextStyle(
               color: currentTheme.couleurTitre,
               fontSize: 32,

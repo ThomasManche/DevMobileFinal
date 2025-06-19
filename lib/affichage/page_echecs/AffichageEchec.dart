@@ -28,9 +28,6 @@ class _AffichageEchecState extends State<AffichageEchec> {
   late String namePlayer1;
   late String namePlayer2;
 
-  // Variable créé pour gérer les logs
-  int k = 1;
-
   @override
   void initState() {
     super.initState();
@@ -60,12 +57,11 @@ class _AffichageEchecState extends State<AffichageEchec> {
         child: ElevatedButton(
           onPressed: () async {
             if (plateau.conditionUndo[1]) {
-              Log log = await database.getLog(k - 1);
+              Log log = await database.getLog(plateau.Nombrecoups);
               setState(() {
                 plateau.Undo(log);
                 database.deleteLogEntry(
                     log.piece, log.x, log.y, log.newX, log.newY);
-                k--;
               });
             }
           },
@@ -94,12 +90,11 @@ class _AffichageEchecState extends State<AffichageEchec> {
         child: ElevatedButton(
           onPressed: () async {
             if (plateau.conditionUndo[0]) {
-              Log log = await database.getLog(k - 1);
+              Log log = await database.getLog(plateau.Nombrecoups);
               setState(() {
                 plateau.Undo(log);
                 database.deleteLogEntry(
                     log.piece, log.x, log.y, log.newX, log.newY);
-                k--;
               });
             }
           },
@@ -608,12 +603,8 @@ class _AffichageEchecState extends State<AffichageEchec> {
 
   void deplacerPiece(int newX, int newY) async {
     if (selectedPiece != null && selectedPiece!.couleur == plateau.tourActuel) {
-      if (plateau.Nombrecoups == 0) {
-        k = 1;
-      }
-      k++;
       await selectedPiece!.deplacement(newX, newY, plateau, database);
-      bool condNul = await plateau.nul(database, k);
+      bool condNul = await plateau.nul(database);
       int PionValue = plateau.tourActuel == "Blanc" ? 0 : 7;
 
       if (selectedPiece!.nom == "Pion" && newY == PionValue) {

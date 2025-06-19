@@ -121,9 +121,11 @@ class Plateau {
       plateau[1][i] = Pion("Noir", 1, i, '${path}black-pawn.png');
     }
     // On initialise les conditions de roque
+    conditionRoque = [];
     for (int i = 0; i < 6; i++) {
       conditionRoque.add(true);
     }
+    conditionUndo = [];
     for (int i = 0; i < 2; i++) {
       conditionUndo.add(false);
     }
@@ -346,14 +348,14 @@ class Plateau {
     return true;
   }
 
-  Future<bool> nul(Log database, int k) async {
-    if (k > 11) {
+  Future<bool> nul(Log database) async {
+    if (Nombrecoups> 11) {
       // On check si le mouvement 1,5,9 && 2,6,10
-      if (await sameMove(database, k - 1, k - 5, k - 9) &&
-          await sameMove(database, k - 2, k - 6, k - 10)) {
+      if (await sameMove(database, Nombrecoups - 1, Nombrecoups - 5, Nombrecoups - 9) &&
+          await sameMove(database, Nombrecoups - 2, Nombrecoups - 6, Nombrecoups - 10)) {
         return true;
       }
-      if (k > 101) {
+      if (Nombrecoups > 101) {
         if (Nombrecoups - dernierMange == 100) {
           return true;
         }
@@ -666,5 +668,7 @@ class Plateau {
     else{
       timerN.addSeconds(10);
     }
+    conditionUndo[0]=false;
+    conditionUndo[1]=false;
   }
 }

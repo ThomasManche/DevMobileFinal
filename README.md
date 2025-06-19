@@ -61,7 +61,7 @@ Le projet propose une expérience utilisateur soignée avec une interface graphi
 
 1. Cloner le projet :
    ```bash
-   git clone https://github.com/nom-utilisateur/ChessArena.git
+   git clone https://github.com/ThomasManche/DevMobileFinal
    ```
 2. Installer les dépendances :
     ```bash

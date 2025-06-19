@@ -375,7 +375,9 @@ class _PageEchecsState extends State<PageEchecs> {
               title: const Text('Abandon du joueur actuel'),
               onTap: () {
                 setState(() {
+                  if (plateau.ConditionJeu){
                   popUp1Abandon(context);
+                  }
                 });
               },
             ),
@@ -390,7 +392,9 @@ class _PageEchecsState extends State<PageEchecs> {
               title: const Text('Sauvegarder'),
               onTap: () {
                 setState(() {
+                  if (plateau.ConditionJeu){
                   plateau.sauvergarderPartie(database);
+                  }
                 });
               },
             ),

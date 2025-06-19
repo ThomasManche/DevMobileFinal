@@ -56,7 +56,7 @@ class _AffichageEchecState extends State<AffichageEchec> {
         padding: const EdgeInsets.all(5.0),
         child: ElevatedButton(
           onPressed: () async {
-            if (plateau.conditionUndo[1]) {
+            if (plateau.conditionUndo[1] && plateau.ConditionJeu) {
               Log log = await database.getLog(plateau.Nombrecoups);
               setState(() {
                 plateau.Undo(log);
@@ -89,7 +89,7 @@ class _AffichageEchecState extends State<AffichageEchec> {
         padding: const EdgeInsets.all(5.0),
         child: ElevatedButton(
           onPressed: () async {
-            if (plateau.conditionUndo[0]) {
+            if (plateau.conditionUndo[0] && plateau.ConditionJeu) {
               Log log = await database.getLog(plateau.Nombrecoups);
               setState(() {
                 plateau.Undo(log);
@@ -615,16 +615,22 @@ class _AffichageEchecState extends State<AffichageEchec> {
         deselectionnerPiece();
         if (plateau.echec(plateau.tourActuel)) {
           if (plateau.echecEtMat(plateau.tourActuel)) {
-            afficherPopupCheckmate();
             plateau.ConditionJeu = false;
+            plateau.timerB.stop();
+            plateau.timerN.stop();
+            afficherPopupCheckmate();
           }
         } else if (plateau.pat(plateau.tourActuel)) {
           afficherPopupPat();
           plateau.ConditionJeu = false;
+          plateau.timerB.stop();
+          plateau.timerN.stop();
         }
         if (condNul) {
           afficherPopupNul();
           plateau.ConditionJeu = false;
+          plateau.timerB.stop();
+          plateau.timerN.stop();
         }
       });
     }

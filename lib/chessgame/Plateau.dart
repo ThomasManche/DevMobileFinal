@@ -585,6 +585,7 @@ class Plateau {
         }
       }
     }
+    return;
   }
 
   void alternerTour() {
@@ -635,7 +636,7 @@ class Plateau {
   Future<void> chargerPartie(Log database) async {
     Reinitialisation();
     database.resetDatabase();
-    int lastTimerN = 0, lastTimerB = 0;
+    int lastTimerN = 600, lastTimerB = 600;
     await database.getSaves().then((saves) async {
       if (saves.isNotEmpty) {
         for (var save in saves) {
@@ -647,19 +648,13 @@ class Plateau {
         }
       }
     });
-          timerB.setMinutes(0);
-          timerB.setSeconds(0);
-          timerB.addSeconds(lastTimerB);
-          timerN.setMinutes(0);
-          timerN.setSeconds(0);
-          timerN.addSeconds(lastTimerN);
-    tourActuel = tourActuel=="Blanc"? "Noir":"Blanc";
-    if (tourActuel =="Noir"){
-      timerB.addSeconds(10);
-    }
-    else{
-      timerN.addSeconds(10);
-    }
+    timerB.setMinutes(0);
+    timerB.setSeconds(0);
+    timerB.addSeconds(lastTimerB);
+    timerN.setMinutes(0);
+    timerN.setSeconds(0);
+    timerN.addSeconds(lastTimerN);
+    if (Nombrecoups > 0){tourActuel = tourActuel=="Blanc"? "Noir":"Blanc";}
     conditionUndo[0]=false;
     conditionUndo[1]=false;
   }

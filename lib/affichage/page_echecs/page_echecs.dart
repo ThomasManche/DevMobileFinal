@@ -221,7 +221,6 @@ class _PageEchecsState extends State<PageEchecs> {
   void chargerPartie() async{
     await plateau.chargerPartie(database);
     setState(() {
-    print("Partie chargée");
     });
   }
   // ______________________________________________________________________________________________________________________________________________________

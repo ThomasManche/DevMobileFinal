@@ -70,7 +70,6 @@ class Log {
       log.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
-    print(log.toMap());
   }
 
   Future<List<Log>> getLogs() async {

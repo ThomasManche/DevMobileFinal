@@ -636,20 +636,12 @@ class Plateau {
     Reinitialisation();
     database.resetDatabase();
     int lastTimerN = 0, lastTimerB = 0;
-    print("Chargement de la partie");
     await database.getSaves().then((saves) async {
-        print("Nombre de coups récupérés : ${saves.length}");
       if (saves.isNotEmpty) {
-        for (var i = 0; i < saves.length; i++) {
-          print("Coup n°$i : ${saves[i]}");
-        }
         for (var save in saves) {
           tourActuel = save.turn;
           lastTimerB = save.timerB;
           lastTimerN = save.timerN;
-          print("Avant déplacement : ${plateau[save.newY][save.newX]?.toString() ?? 'vide'}");
-          print("Depuis : ${save.x},${save.y} vers ${save.newX},${save.newY}");
-          print("Chargement de la partie : $save");
           await plateau[save.y][save.x]
               ?.deplacement(save.newX, save.newY, this, database);
         }
